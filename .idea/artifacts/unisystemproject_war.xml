@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="unisystemproject:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="unisystemproject.war">
+      <element id="artifact" artifact-name="unisystemproject:war exploded" />
+    </root>
+  </artifact>
+</component>
