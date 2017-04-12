@@ -3,7 +3,7 @@ package models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Course implements Serializable {
@@ -15,19 +15,24 @@ public class Course implements Serializable {
     @ManyToMany
     @JoinTable(
             name = "CourseStudents",
-            joinColumns = @JoinColumn(name = "Course", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "Users", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "courseId", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "userId", referencedColumnName = "id")
     )
-    private List<User> students;
+    private Set<User> students;
     @ManyToMany
     @JoinTable(
             name = "CourseTeachers",
-            joinColumns = @JoinColumn(name = "Course", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "Users", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "courseId", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "userId", referencedColumnName = "id")
     )
-    private List<User> teachers;
+    private Set<User> teachers;
 
-    public Course() {}
+    public Course() {
+    }
+
+    public String toString() {
+        return id + ":'" + name + "'";
+    }
 
     public long getId() {
         return id;
@@ -49,11 +54,19 @@ public class Course implements Serializable {
         this.description = description;
     }
 
-    public List<User> getStudents() {
+    public Set<User> getStudents() {
         return students;
     }
 
-    public void setStudents(List<User> students) {
+    public void setStudents(Set<User> students) {
         this.students = students;
+    }
+
+    public Set<User> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<User> teachers) {
+        this.teachers = teachers;
     }
 }
