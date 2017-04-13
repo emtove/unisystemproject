@@ -28,6 +28,10 @@ public class UserService {
         return em.createQuery("select u from User u", User.class).getResultList();
     }
 
+    public User getUser(long id) {
+        return em.find(User.class, id);
+    }
+
     /**
      * Adds a new user to the database unless any of the user's unique attributes
      * conflicts with an existing user in the database.
@@ -52,8 +56,11 @@ public class UserService {
         }
     }
 
-    public User getUser(long userId) {
-        return em.find(User.class, userId);
+    public void removeUser(long id) {
+        User user = getUser(id);
+        if (user != null) {
+            em.remove(user);
+        }
     }
 
     /**
@@ -87,7 +94,7 @@ public class UserService {
      * @param newUser
      */
     public void updateUser(User newUser) {
-        User oldUser = em.find(User.class, newUser.getId());
+        User oldUser = getUser(newUser.getId());
         // TODO: cut down more on the ugly boilerplate here
         // update the other side if the course sets aren't the same
         if (!oldUser.getStudentCourses().equals(newUser.getStudentCourses())) {
