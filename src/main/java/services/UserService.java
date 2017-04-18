@@ -8,10 +8,7 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.sql.SQLException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.function.Function;
 
 /**
  * The UserService class is in charge of adding/removing/modifying the users
@@ -64,47 +61,14 @@ public class UserService {
     }
 
     /**
-     * This is a helper function for updateUser to cut down on the needless
-     * boilerplate code when updating all relevant courses with added/removed users.
-     *  @param user
-     * @param getUserList
-     * @param oldCourses
-     * @param newCourses
-     */
-    private void updateCoursesForUser(User user, Function<Course, Set<User>> getUserList,
-                                      Set<Course> oldCourses, Set<Course> newCourses) {
-        // Add the user to all added courses
-        Set<Course> coursesToAdd = new HashSet<>(newCourses);
-        coursesToAdd.removeAll(oldCourses);
-        for (Course c : coursesToAdd) {
-            getUserList.apply(em.find(Course.class, c.getId())).add(user);
-        }
-        // Remove the user from all removed courses
-        Set<Course> coursesToRemove = new HashSet<>(oldCourses);
-        coursesToRemove.removeAll(newCourses);
-        for (Course c : coursesToRemove) {
-            getUserList.apply(em.find(Course.class, c.getId())).remove(user);
-        }
-    }
-
-    /**
      * Updates the specified user with the new data, updating all connected courses
      * in the process.
-     *
-     * @param newUser
      */
     public void updateUser(User newUser) {
         User oldUser = getUser(newUser.getId());
-        // TODO: cut down more on the ugly boilerplate here
-        // update the other side if the course sets aren't the same
-        if (!oldUser.getStudentCourses().equals(newUser.getStudentCourses())) {
-            updateCoursesForUser(oldUser, Course::getStudents, oldUser.getStudentCourses(), newUser.getStudentCourses()
-            );
-        }
-        if (!oldUser.getTeacherCourses().equals(newUser.getTeacherCourses())) {
-            updateCoursesForUser(oldUser, Course::getTeachers, oldUser.getTeacherCourses(), newUser.getTeacherCourses()
-            );
-        }
+        // This is here to update the other end of the many-to-many connection.
+        UserCourseCommon.updateUsersOrCourses(oldUser, newUser, Course::getStudents, User::getStudentCourses, Course.class, em);
+        UserCourseCommon.updateUsersOrCourses(oldUser, newUser, Course::getTeachers, User::getTeacherCourses, Course.class, em);
         em.merge(newUser);
     }
 

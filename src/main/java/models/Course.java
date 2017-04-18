@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-public class Course implements Serializable {
+public class Course implements Identifiable, Serializable {
     @Id @GeneratedValue
     private long id;
     @NotNull

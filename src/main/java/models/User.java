@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 // this table has to be called "users" since "user" is a reserved name in sql
 @Table(name = "Users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
-public class User implements Serializable {
+public class User implements Identifiable, Serializable {
     @Id @GeneratedValue
     private long id;
     @NotNull
