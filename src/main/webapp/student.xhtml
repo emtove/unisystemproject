@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+    <!--<h:outputStylesheet library="css" name="student.css"  />-->
+</h:head>
+<h:body>
+<f:view>
+
+    <h:outputLabel value="Inloggad som: #{student.firstName} #{student.lastName}"/>
+    <fieldset>
+        <legend> Sök kurs
+            <h:form>
+                <h:selectOneMenu>
+                    <f:selectItems value="#{student.allCourses}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}"/>
+                </h:selectOneMenu>
+                <h:commandButton value="Sök kurs" action="#{student.applyForCourse}"/>
+            </h:form>
+        </legend>
+    </fieldset>
+
+    <h:form>
+    <fieldset>
+        <legend> Mina kurser
+
+                <h:panelGrid columns="4">
+                   <c:forEach var="i" begin="0" end="#{student.registredCourses.size()-1}">
+
+                       <c:set var="id" value="#{student.registredCourses.get(i).id}"></c:set>
+                       <h:outputLabel value="#{student.registredCourses.get(i).name}"/>
+                       <h:commandButton value="Avregistrera" action="#{student.deRegisterForCourse(id)}"/>
+                       <h:commandButton value="Hämta närvaro" action="#{student.getAttendenceForCourse(id)}"/>
+                       <h:outputLabel value="KursId: #{id}"/>
+
+
+                   </c:forEach>
+
+                </h:panelGrid>
+                <!--<div id="attendance">-->
+                    <h:panelGrid columns="#{student.attendenceArray.size()}">
+                        <c:forEach var="i" begin="0" end="#{student.attendenceArray.size()-1}">
+                            <h:outputLabel value="#{student.attendenceArray.get(i).date}"/>
+                        </c:forEach>
+                        <c:forEach var="i" begin="0" end="#{student.attendenceArray.size()-1}">
+                            <h:outputLabel value="#{student.attendenceArray.get(i).here}"/>
+                        </c:forEach>
+                    </h:panelGrid>
+                <!--</div>-->
+
+        </legend>
+    </fieldset>
+    </h:form>
+
+</f:view>
+</h:body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<f:view>
+    <h:form>
+        #{teacherTakeAttendance.course}
+        <br/>
+        <c:forEach var="i" begin="0" end="#{teacherTakeAttendance.myCourses.size()-1}">
+
+            <c:set var="id" value="#{teacherTakeAttendance.myCourses.get(i).id}"></c:set>
+            <h:outputLabel value="#{teacherTakeAttendance.myCourses.get(i).name}"/>
+            <h:commandButton value="För närvaro" action="#{teacherTakeAttendance.takeAttendanceForCourse(id)}"/>
+            <h:outputLabel value="#{teacherTakeAttendance.myCourses.get(i).id}"/>
+            <br/>
+        </c:forEach>
+
+        <h:dataTable value="#{teacherTakeAttendance.students}" var="student">
+            <h:column>
+                <f:facet name="header">Efternamn</f:facet>
+                #{student.lastName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Förnamn</f:facet>
+                #{student.firstName}
+            </h:column>
+        </h:dataTable>
+    </h:form>
+    <!--<h:selectOneMenu  value="#{teacherTakeAttendance.myCourses}" valueChangeListener="#{teacherTakeAttendance.changeSelectedCourse}" onchange="submit()">-->
+    <!--<f:selectItems   value="#{teacherTakeAttendance.myCourses}" />-->
+    <!--</h:selectOneMenu>-->
+</f:view>
+</html>
