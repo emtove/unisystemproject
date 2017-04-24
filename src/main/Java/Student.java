@@ -1,8 +1,9 @@
 import login.AuthSessionManager;
 import models.Course;
+import services.AttendanceRecordService;
 import services.CourseService;
 import services.UserService;
-
+import models.AttendanceRecord;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -20,7 +21,7 @@ import java.util.Set;
 public class Student {
 
     private models.User user;
-    private String selectedCourse;
+    private long selectedCourseAttendnce;
 
 
     @EJB
@@ -30,11 +31,14 @@ public class Student {
     */
     @EJB
     UserService userService;
+    @EJB
+    AttendanceRecordService attendanceRecordService;
 
     @PostConstruct
     public void Init() {
          /*models.User user = authSessionManager.getUser();*/
         user = userService.getUser(1);
+
 
     }
 
@@ -43,8 +47,9 @@ public class Student {
 //        for (Course c: set) {
 //            System.out.println(c.getName());
 //        }
-
-        return new ArrayList<Course>(user.getStudentCourses());
+        List<Course> courses = new ArrayList<Course>(user.getStudentCourses());
+        courses.sort(new CourseComparator());
+        return courses;
     }
 
     public List<Course> getAllCourses(){
@@ -60,12 +65,17 @@ public class Student {
         userService.removeStudentFromCourse(user.getId(), id);
     }
 
-    public void getAttendenceForCourse(long id){
+    public void showAttendenceForCourse(long courseId){
 
+        selectedCourseAttendnce = courseId;
     }
 
-    public ArrayList<AttendanceDate> getAttendenceArray() {
-        return new ArrayList<AttendanceDate>();
+    public List<AttendanceRecord> getAttendenceArray() {
+        return attendanceRecordService.getAttendanceByCourseAndUser(selectedCourseAttendnce, user.getId());
+    }
+
+    public String getCourseName(){
+        return courseService.getCourse(selectedCourseAttendnce).getName();
     }
 
     public String getFirstName() {

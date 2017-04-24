@@ -34,7 +34,7 @@
                        <c:set var="id" value="#{student.registredCourses.get(i).id}"></c:set>
                        <h:outputLabel value="#{student.registredCourses.get(i).name}"/>
                        <h:commandButton value="Avregistrera" action="#{student.deRegisterForCourse(id)}"/>
-                       <h:commandButton value="Hämta närvaro" action="#{student.getAttendenceForCourse(id)}"/>
+                       <h:commandButton value="Hämta närvaro" action="#{student.showAttendenceForCourse(id)}"/>
                        <h:outputLabel value="KursId: #{id}"/>
 
 
@@ -47,7 +47,7 @@
                             <h:outputLabel value="#{student.attendenceArray.get(i).date}"/>
                         </c:forEach>
                         <c:forEach var="i" begin="0" end="#{student.attendenceArray.size()-1}">
-                            <h:outputLabel value="#{student.attendenceArray.get(i).here}"/>
+                            <h:outputLabel value="#{student.attendenceArray.get(i).present}"/>
                         </c:forEach>
                     </h:panelGrid>
                 <!--</div>-->

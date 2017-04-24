@@ -6,7 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+    <h:outputStylesheet library="css" name="student.css"  />
+</h:head>
 <f:view>
+
     <h:form>
         #{teacherTakeAttendance.course}
         <br/>
@@ -18,17 +22,33 @@
             <h:outputLabel value="#{teacherTakeAttendance.myCourses.get(i).id}"/>
             <br/>
         </c:forEach>
+        <div id="studentAttendanceLabels">
+        <c:forEach var="i" begin="0" end="#{teacherTakeAttendance.students.size()-1}">
+            <h:outputLabel value="#{teacherTakeAttendance.students.get(i).lastName} "/>
+            <h:outputLabel value="#{teacherTakeAttendance.students.get(i).firstName}"/>
+            <br/>
+        </c:forEach>
+        </div>
+        <div id="studentAttendanceBooleans">
+            <h:selectManyCheckbox value="#{teacherTakeAttendance.attenadnce}">
+                <c:forEach var="i" begin="0" end="#{teacherTakeAttendance.students.size()-1}">
+                    <f:selectItem itemValue="#{teacherTakeAttendance.students.get(i).id}" itemLabel="#{teacherTakeAttendance.students.get(i).id}"/>
+                    <br/>
+                </c:forEach>
+            </h:selectManyCheckbox>
 
-        <h:dataTable value="#{teacherTakeAttendance.students}" var="student">
-            <h:column>
-                <f:facet name="header">Efternamn</f:facet>
-                #{student.lastName}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Förnamn</f:facet>
-                #{student.firstName}
-            </h:column>
-        </h:dataTable>
+        </div>
+        <h:commandButton value="Registrera Närvaro" action="#{teacherTakeAttendance.registerAttendance}"></h:commandButton>
+        <!--<h:dataTable value="#{teacherTakeAttendance.students}" var="student">-->
+            <!--<h:column>-->
+                <!--<f:facet name="header">Efternamn</f:facet>-->
+                <!--#{student.lastName}-->
+            <!--</h:column>-->
+            <!--<h:column>-->
+                <!--<f:facet name="header">Förnamn</f:facet>-->
+                <!--#{student.firstName}-->
+            <!--</h:column>-->
+        <!--</h:dataTable>-->
     </h:form>
     <!--<h:selectOneMenu  value="#{teacherTakeAttendance.myCourses}" valueChangeListener="#{teacherTakeAttendance.changeSelectedCourse}" onchange="submit()">-->
     <!--<f:selectItems   value="#{teacherTakeAttendance.myCourses}" />-->
