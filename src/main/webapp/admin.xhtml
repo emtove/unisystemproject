@@ -9,7 +9,6 @@
 
 <h:head>
     <title>IT Universitetet.</title>
-
     <meta charset="UTF-8" />
 </h:head>
 <h:body>
@@ -19,8 +18,8 @@
         <ui:define name="header">
             <div class="form">
                 <h:form class="admin-form">
-                    <h:inputText a:placeholder="Lägg till kurs"/>
-                    <h:inputTextarea form="admin-form" a:placeholder="lägg till kursinformation"></h:inputTextarea>
+                    <h:inputText a:placeholder="Lägg till kurs-namn"/>
+                    <h:inputTextarea form="admin-form" a:placeholder="Lägg till kursinformation"></h:inputTextarea>
                     <h:commandButton styleClass="btn-add" value="Lägg till"></h:commandButton>
                     <br /> <br />
                     <h:selectOneMenu name="teachers">
@@ -33,10 +32,8 @@
                     <h:commandButton styleClass="btn-add" value="Lägg till"></h:commandButton>
                 </h:form>
             </div>
-
         </ui:define>
     </ui:composition>
-
 </h:body>
 
 </html>

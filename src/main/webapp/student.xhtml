@@ -27,9 +27,15 @@
                     <f:selectItem itemValue="d" itemLabel="Javascript" />
                 </h:selectOneMenu>
                 <h:commandButton styleClass="btn-add" value="Ansök"></h:commandButton>
-                <h3>Mina kurser:</h3>
-                <h:outputText value="Java"></h:outputText>
-                <h:commandButton styleClass="btn-del" value="Ta bort"></h:commandButton>
+                <div class="course-table">
+                    <h3>Mina kurser:</h3>
+                    <h:outputText value="Java"></h:outputText>
+                    <h:commandButton value="Se närvaro"></h:commandButton>
+                    <h:commandButton styleClass="btn-del" value="Ta bort"></h:commandButton>
+                    <h:outputText value="C++"></h:outputText>
+                    <h:commandButton value="Se närvaro"></h:commandButton>
+                    <h:commandButton styleClass="btn-del" value="Ta bort"></h:commandButton>
+                </div>
             </h:form>
         </div>
     </ui:define>

@@ -5,9 +5,8 @@ body {
 
 .form {
     position: relative;
-    z-index: -1;
     background: #FFFFFF;
-    max-width: 360px;
+    max-width: 400px;
     margin: 0 auto 100px;
     padding: 45px;
     text-align: center;
@@ -15,11 +14,9 @@ body {
 }
 
 .course-table {
-    width: 200px;
-    height: 50px;
-    background-color: lightskyblue;
-    text-align: left;
-    display: inline;
+    margin: 0 auto;
+    max-width: 300px;
+
 }
 
 .form input {
@@ -50,11 +47,13 @@ body {
     text-transform: uppercase;
     outline: 0;
     min-width: 100px;
-    border: 0;
     padding: 15px;
+    background: #5cb85c;
+    border-color: #4cae4c;
     color: #FFFFFF;
     font-size: 14px;
     cursor: pointer;
+    margin-left: 20px;
 }
 
 .form input[type="submit"].btn-add {
@@ -65,5 +64,4 @@ body {
 .form input[type="submit"].btn-del {
     background-color: #d9534f;
     border-color: #d9534f;
-    margin: 0px 55px;
 }
