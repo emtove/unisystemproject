@@ -13,7 +13,7 @@ nav {
     display: block;
     margin: 8px 22px 8px 22px;
     overflow: hidden;
-    width: 50%;
+    max-width: 900px;
 }
 
 nav ul {
@@ -29,6 +29,12 @@ nav ul li {
   display: inline-block;
   list-style-type: none;
   transition: all 0.2s;
+}
+
+#username {
+    float: right;
+    margin-right: 50px;
+    padding: 20px 0 19px 0;
 }
 
 nav > ul > li > a > .caret,

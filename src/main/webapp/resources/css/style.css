@@ -2,22 +2,29 @@
 
 body {
     background: #EBE8E4;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Roboto" Helvetica, Arial, sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Roboto", sans-serif;
+}
+
+.header_text {
+    height: 380px;
+    width: 590px;
+    float: right;
+    text-align: center;
 }
 
 .login-page {
-    width: 360px;
+    width: 960px;
     padding: 7% 0 0;
-    margin: 0px;
+    margin: auto;
 }
 
 .form {
-    position: relative;
+    float: left;
     background: #FFFFFF;
     max-width: 360px;
-    margin: 0 auto 100px;
     padding: 45px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .form input {
@@ -46,12 +53,22 @@ body {
 
 .form input[type="submit"].btn-login {
     background: #5cb85c;
-    border-color: #4cae4c;
+    border-color: #5cb85c;
+}
+
+.form input[type="submit"].btn-login:hover {
+    background-color: #449d44;
+    border-color: #449d44;
 }
 
 .form input[type="submit"].btn-register {
     background-color: #337ab7;
     border-color: #2e6da4;
+}
+
+.form input[type="submit"].btn-register:hover {
+    background-color: #286090;
+    border-color: #204d74;
 }
 
 .form .register-form {

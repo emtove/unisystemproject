@@ -70,3 +70,8 @@ body {
     background: #5cb85c;
     border-color: #4cae4c;
 }
+
+.form input[type="submit"].btn-add:hover {
+    background-color: #449d44;
+    border-color: #398439;
+}

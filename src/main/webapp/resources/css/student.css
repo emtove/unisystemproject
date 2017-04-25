@@ -16,7 +16,6 @@ body {
 .course-table {
     margin: 0 auto;
     max-width: 300px;
-
 }
 
 .form input {
@@ -64,4 +63,18 @@ body {
 .form input[type="submit"].btn-del {
     background-color: #d9534f;
     border-color: #d9534f;
+}
+
+.form input[type="submit"].btn-del:hover {
+    background-color: #c9302c;
+    border-color: #c9302c;
+}
+
+.form input[type="submit"].btn-add:hover {
+    background-color: #286090;
+    border-color: #204d74;
+}
+.form input[type="submit"]:hover {
+    background-color: #449d44;
+    border-color: #398439;
 }
