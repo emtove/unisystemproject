@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, student"/>
-</f:view>
+
+<h:head>
+    <title>IT Universitetet.</title>
+    <h:outputStylesheet library="css" name="style.css" />
+    <meta charset="UTF-8" />
+</h:head>
+
+<h:body>
+<div class="login-page">
+    <div class="form">
+        <h:form class="login-form">
+            <h3>Logga in.</h3>
+            <h:inputText a:placeholder="emailadress"/>
+            <h:inputSecret a:placeholder="lösenord"/>
+            <h:commandButton styleClass="btn-login" value="Logga in"></h:commandButton>
+            <br/><br/>
+            <h:form id="register-form">
+                <h3>Skapa ett konto.</h3>
+                <h:inputText a:placeholder="förnamn"/>
+                <h:inputText a:placeholder="efternamn"/>
+                <h:inputText a:placeholder="emailadress"/>
+                <h:inputSecret a:placeholder="lösenord"/>
+                <h:commandButton styleClass="btn-register" value="Registrera"></h:commandButton>
+            </h:form>
+        </h:form>
+    </div>
+    <div class="header_text">
+        <h1>IT UNIVERSITETET</h1>
+        <p>På <strong>IT Universitetet</strong> hittar du utbildningar inom IT &amp; teknik.<br />
+            Vår målsättning är att alla studerande ska få ett jobb inom<br /> det område de utbildat sig direkt efter utbildningen.<br />
+            Därför drivs och utvecklas utbildningarna i nära samarbete med privata<br /> företag, offentlig verksamhet, branschorganisationer och högskolor.<br /><br />
+            Alla våra utbildningar är självklart inom områden där näringslivet och den offentliga sektorn sagt sig behöva fler kompetenta och engagerade medarbetare.<br /><br />
+            Vi har utbildningar inom Java, C++, C# &amp; många fler </p>
+
+
+    </div>
+</div>
+</h:body>
+
 </html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>#{titleVar}</title>
+    <ui:insert name="style"></ui:insert>
+    <h:outputStylesheet library="css" name="template.css" />
+    <meta charset="UTF-8" />
+</h:head>
+
+<h:body>
+<nav>
+    <ul>
+        <li><h:link value="Hem" outcome="index"></h:link></li>
+
+        <!-- Student fliken-->
+        <li>
+            <h:link value="Student" outcome="student"></h:link>
+        </li>
+
+        <!-- Lärare fliken-->
+        <li>
+            <h:link value="Lärare" outcome="index"><span class="caret"></span></h:link>
+            <div>
+                <ul>
+                    <li>
+                        <h:link value="Närvaro" outcome="index"><span class="caret"></span></h:link>
+                        <div>
+                            <ul>
+                                <li><h:link value="Föra närvaro" outcome="index"></h:link></li>
+                                <li><h:link value="Se närvaro" outcome="index"></h:link></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><h:link value="Mina kurser" outcome="index"></h:link></li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Administrator fliken-->
+        <li>
+            <h:link value="Administrator" outcome="index"><span class="caret"></span></h:link>
+            <div>
+                <ul>
+                    <li>
+                        <h:link value="Närvaro" outcome="index"><span class="caret"></span></h:link>
+                        <div>
+                            <ul>
+                                <li><h:link value="Per kurs" outcome="index"></h:link></li>
+                                <li><h:link value="Per elev" outcome="index"></h:link></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><h:link value="Administrera kurs" outcome="admin"></h:link></li>
+                </ul>
+            </div>
+        </li>
+        <li><h:link value="Om oss" outcome="index"></h:link></li>
+        <li><h:link value="Hjälp" outcome="index"></h:link></li>
+        <h:outputText id="username" value="Hej Heidar"></h:outputText>
+    </ul>
+</nav>
+    <ui:insert name="header"></ui:insert>
+</h:body>
+
+</html>
