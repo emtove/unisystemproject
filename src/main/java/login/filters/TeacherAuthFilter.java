@@ -1,11 +1,13 @@
 package login.filters;
 
-import models.User;
-
 public class TeacherAuthFilter extends AuthFilter {
 
     @Override
-    boolean userRoleMatches(User user) {
-        return user.isTeacher();
+    String handleRequest() {
+        if (authSessionManager.isLoggedIn() && authSessionManager.getUser().isTeacher()) {
+            return null;
+        } else {
+            return "/index.xhtml";
+        }
     }
 }

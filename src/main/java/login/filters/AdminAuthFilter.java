@@ -1,11 +1,13 @@
 package login.filters;
 
-import models.User;
-
 public class AdminAuthFilter extends AuthFilter {
 
     @Override
-    boolean userRoleMatches(User user) {
-        return user.isAdmin();
+    String handleRequest() {
+        if (authSessionManager.isLoggedIn() && authSessionManager.getUser().isAdmin()) {
+            return null;
+        } else {
+            return "/index.xhtml";
+        }
     }
 }

@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -16,20 +15,28 @@
 <h:body>
 <div class="login-page">
     <div class="form">
-        <h:form class="login-form">
-            <h3>Logga in.</h3>
-            <h:inputText a:placeholder="emailadress"/>
-            <h:inputSecret a:placeholder="lösenord"/>
-            <h:commandButton styleClass="btn-login" value="Logga in"></h:commandButton>
+        <h:form id="login-form">
+            <h3>Logga in</h3>
+            <h:inputText id="email-input" a:placeholder="emailadress" value="#{logInForm.email}"/>
+            <h:inputSecret id="password-input" a:placeholder="lösenord" value="#{logInForm.password}"/>
+            <h:message for="login-form"/>
+            <h:commandButton styleClass="btn-login" action="#{logInForm.submitForm}"
+                             value="Logga in"/>
             <br/><br/>
-            <h:form id="register-form">
-                <h3>Skapa ett konto.</h3>
-                <h:inputText a:placeholder="förnamn"/>
-                <h:inputText a:placeholder="efternamn"/>
-                <h:inputText a:placeholder="emailadress"/>
-                <h:inputSecret a:placeholder="lösenord"/>
-                <h:commandButton styleClass="btn-register" value="Registrera"></h:commandButton>
-            </h:form>
+        </h:form>
+        <h:form id="register-form">
+            <h3>Skapa ett konto</h3>
+            <h:inputText a:placeholder="förnamn" value="#{registerForm.user.firstName}"/>
+            <h:inputText a:placeholder="efternamn" value="#{registerForm.user.lastName}"/>
+            <h:inputText a:placeholder="emailadress" value="#{registerForm.user.email}"/>
+            <h:inputSecret id="join-password-input" a:placeholder="lösenord"
+                           value="#{registerForm.user.password}"/>
+            <h:inputSecret id="repeated-password" a:placeholder="upprepa lösenord"
+                           value="#{registerForm.repeatedPassword}"/>
+            <h:message for="register-form:join-password-input"/>
+            <h:message for="register-form:repeated-password"/>
+            <h:commandButton styleClass="btn-register" value="Registrera"
+                             action="#{registerForm.submitForm}"/>
         </h:form>
     </div>
     <div class="header_text">
@@ -39,8 +46,6 @@
             Därför drivs och utvecklas utbildningarna i nära samarbete med privata<br /> företag, offentlig verksamhet, branschorganisationer och högskolor.<br /><br />
             Alla våra utbildningar är självklart inom områden där näringslivet och den offentliga sektorn sagt sig behöva fler kompetenta och engagerade medarbetare.<br /><br />
             Vi har utbildningar inom Java, C++, C# &amp; många fler </p>
-
-
     </div>
 </div>
 </h:body>

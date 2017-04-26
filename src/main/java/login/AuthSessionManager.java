@@ -53,6 +53,18 @@ public class AuthSessionManager implements Serializable {
         return loggedIn;
     }
 
+    public boolean isStudentLoggedIn() {
+        return loggedIn && user != null && user.isStudent();
+    }
+
+    public boolean isTeacherLoggedIn() {
+        return loggedIn && user != null && user.isTeacher();
+    }
+
+    public boolean isAdminLoggedIn() {
+        return loggedIn && user != null && user.isAdmin();
+    }
+
     public User getUser() {
         return user;
     }

@@ -7,64 +7,72 @@
 
 <h:head>
     <title>#{titleVar}</title>
-    <ui:insert name="style"></ui:insert>
-    <h:outputStylesheet library="css" name="template.css" />
-    <meta charset="UTF-8" />
+    <ui:insert name="style"/>
+    <h:outputStylesheet library="css" name="template.css"/>
+    <meta charset="UTF-8"/>
 </h:head>
 
 <h:body>
-<nav>
-    <ul>
-        <li><h:link value="Hem" outcome="index"></h:link></li>
+    <nav>
+        <ul>
+            <li><h:link value="Hem" outcome="index"/></li>
 
-        <!-- Student fliken-->
-        <li>
-            <h:link value="Student" outcome="student"></h:link>
-        </li>
+            <!-- Student fliken-->
+            <ui:fragment rendered="#{authSessionManager.studentLoggedIn}">
+                <li><h:link value="Student" outcome="student"/></li>
 
-        <!-- Lärare fliken-->
-        <li>
-            <h:link value="Lärare" outcome="index"><span class="caret"></span></h:link>
-            <div>
-                <ul>
-                    <li>
-                        <h:link value="Närvaro" outcome="index"><span class="caret"></span></h:link>
-                        <div>
-                            <ul>
-                                <li><h:link value="Föra närvaro" outcome="index"></h:link></li>
-                                <li><h:link value="Se närvaro" outcome="index"></h:link></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><h:link value="Mina kurser" outcome="index"></h:link></li>
-                </ul>
-            </div>
-        </li>
-
-        <!-- Administrator fliken-->
-        <li>
-            <h:link value="Administrator" outcome="index"><span class="caret"></span></h:link>
-            <div>
-                <ul>
-                    <li>
-                        <h:link value="Närvaro" outcome="index"><span class="caret"></span></h:link>
-                        <div>
-                            <ul>
-                                <li><h:link value="Per kurs" outcome="index"></h:link></li>
-                                <li><h:link value="Per elev" outcome="index"></h:link></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><h:link value="Administrera kurs" outcome="admin"></h:link></li>
-                </ul>
-            </div>
-        </li>
-        <li><h:link value="Om oss" outcome="index"></h:link></li>
-        <li><h:link value="Hjälp" outcome="index"></h:link></li>
-        <h:outputText id="username" value="Hej Heidar"></h:outputText>
-    </ul>
-</nav>
-    <ui:insert name="header"></ui:insert>
+            </ui:fragment>
+            <!-- Lärare fliken-->
+            <ui:fragment rendered="#{authSessionManager.teacherLoggedIn}">
+                <li>
+                    <h:link value="Lärare" outcome="index"><span class="caret"/></h:link>
+                    <div>
+                        <ul>
+                            <li>
+                                <h:link value="Närvaro" outcome="index"><span class="caret"/></h:link>
+                                <div>
+                                    <ul>
+                                        <li><h:link value="Föra närvaro" outcome="index"/></li>
+                                        <li><h:link value="Se närvaro" outcome="index"/></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><h:link value="Mina kurser" outcome="index"/></li>
+                        </ul>
+                    </div>
+                </li>
+            </ui:fragment>
+            <!-- Administrator fliken-->
+            <ui:fragment rendered="#{authSessionManager.adminLoggedIn}">
+                <li>
+                    <h:link value="Administrator" outcome="index"><span class="caret"/></h:link>
+                    <div>
+                        <ul>
+                            <li>
+                                <h:link value="Närvaro" outcome="index"><span class="caret"/></h:link>
+                                <div>
+                                    <ul>
+                                        <li><h:link value="Per kurs" outcome="index"/></li>
+                                        <li><h:link value="Per elev" outcome="index"/></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><h:link value="Administrera kurs" outcome="admin"/></li>
+                        </ul>
+                    </div>
+                </li>
+            </ui:fragment>
+            <li><h:link value="Om oss" outcome="index"/></li>
+            <li><h:link value="Hjälp" outcome="index"/></li>
+            <h:form styleClass="logged-in-form" rendered="#{authSessionManager.loggedIn}">
+                <h:outputText styleClass="username" value="Hej #{authSessionManager.user.firstName}"/>
+                <h:commandLink value="(Logga ut)" action="#{authSessionManager.logOut}"/>
+            </h:form>
+            <h:link rendered="#{not authSessionManager.loggedIn}" styleClass="logged-in-form"
+                    value="Logga in" outcome="index"/>
+        </ul>
+    </nav>
+    <ui:insert name="header"/>
 </h:body>
 
 </html>

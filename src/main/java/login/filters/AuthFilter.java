@@ -19,10 +19,10 @@ import java.io.IOException;
  */
 public abstract class AuthFilter implements Filter {
     @Inject
-    private AuthSessionManager authSessionManager;
+    AuthSessionManager authSessionManager;
     private FilterConfig filterConfig;
 
-    abstract boolean userRoleMatches(User user);
+    abstract String handleRequest();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -32,14 +32,14 @@ public abstract class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        if (authSessionManager.isLoggedIn() && userRoleMatches(authSessionManager.getUser())) {
+        String targetUrl = handleRequest();
+        if (targetUrl == null) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             // TODO: change this if needed, it's just a placeholder
-            String loginPageUrl = "/login.xhtml";
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
             ((HttpServletResponse) servletResponse).sendRedirect(
-                    servletRequest.getServletContext().getContextPath() + loginPageUrl);
+                    servletRequest.getServletContext().getContextPath() + targetUrl);
         }
     }
 
