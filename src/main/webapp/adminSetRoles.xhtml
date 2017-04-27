@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+   <h:form>
+
+       <h:panelGrid columns="4">
+           <h:outputLabel value="Användare" />
+           <h:outputLabel value="Student" />
+           <h:outputLabel value="Lärare" />
+           <h:outputLabel value="Admin" />
+           <h:outputLabel value="#{adminSetRoles.selectedUserName} "/>
+           <h:selectBooleanCheckbox value="#{adminSetRoles.student}"/>
+           <h:selectBooleanCheckbox value="#{adminSetRoles.teacher}"/>
+           <h:selectBooleanCheckbox value="#{adminSetRoles.admin}"/>
+       </h:panelGrid>
+
+       <h:selectOneListbox value="#{adminSetRoles.selectedUserId}" onchange="submit()" valueChangeListener="#{adminSetRoles.selectUser}">
+           <f:selectItems value="#{adminSetRoles.allUsers}" var="u" itemLabel="#{u.firstName} #{u.lastName}" itemValue="#{u.id}" />
+       </h:selectOneListbox>
+       <h:commandButton value="Tilldela roller" action="#{adminSetRoles.setRoles}"/>
+       <br/>
+
+
+   </h:form>
+
+</f:view>
+</html>
