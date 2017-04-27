@@ -17,7 +17,11 @@ public class AttendanceRecordService {
     @PersistenceContext
     private EntityManager em;
 
-    public void addAttendanceRecord(AttendanceRecord attendanceRecord) {
+    public void addAttendanceRecord(AttendanceRecord a){
+        em.persist(a);
+    }
+
+    public void updateAttendanceRecord(AttendanceRecord attendanceRecord) {
         List<AttendanceRecord> attendanceRecords = getAttendance(attendanceRecord);
         if (attendanceRecords.size() > 0) {
             AttendanceRecord oldRecord = attendanceRecords.get(0);

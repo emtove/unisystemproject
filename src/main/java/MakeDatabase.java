@@ -1,7 +1,9 @@
 
 import login.AuthSessionManager;
+import models.AttendanceRecord;
 import models.Course;
 import models.User;
+import services.AttendanceRecordService;
 import services.CourseService;
 import services.UserService;
 
@@ -9,23 +11,25 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 /**
  * Created by Elev1 on 2017-04-25.
  */
 @RequestScoped
 @Named
-public class LogIn {
+public class MakeDatabase {
 
     private String email;
     private String passWord;
 
     @Inject
-    DatabaseSetUp databaseSetUp;
+    AttendanceRecordService attendanceRecordService;
+
+
     @Inject
     AuthSessionManager authSessionManager;
 
@@ -135,6 +139,48 @@ public class LogIn {
         userService.addTeacherToCourse(userService.getUser(2).getId(),courseList.get(0).getId());
         userService.addTeacherToCourse(userService.getUser(2).getId(),courseList.get(1).getId());
         userService.addTeacherToCourse(userService.getUser(2).getId(),courseList.get(2).getId());
+
+        AttendanceRecord a = new AttendanceRecord();
+        a.setDate(LocalDate.now());
+        a.setPresent(true);
+        a.setCourseId(5);
+        a.setUserId(1);
+        attendanceRecordService.addAttendanceRecord(a);
+
+        a = new AttendanceRecord();
+        a.setDate(LocalDate.now());
+        a.setPresent(true);
+        a.setCourseId(6);
+        a.setUserId(1);
+        attendanceRecordService.addAttendanceRecord(a);
+
+        a = new AttendanceRecord();
+        a.setDate(LocalDate.now());
+        a.setPresent(true);
+        a.setCourseId(7);
+        a.setUserId(1);
+        attendanceRecordService.addAttendanceRecord(a);
+
+        a = new AttendanceRecord();
+        a.setDate(LocalDate.now().minus(1, ChronoUnit.DAYS));
+        a.setPresent(true);
+        a.setCourseId(5);
+        a.setUserId(1);
+        attendanceRecordService.addAttendanceRecord(a);
+
+        a = new AttendanceRecord();
+        a.setDate(LocalDate.now().minus(1, ChronoUnit.DAYS));
+        a.setPresent(true);
+        a.setCourseId(6);
+        a.setUserId(1);
+        attendanceRecordService.addAttendanceRecord(a);
+
+        a = new AttendanceRecord();
+        a.setDate(LocalDate.now().minus(1, ChronoUnit.DAYS));
+        a.setPresent(false);
+        a.setCourseId(7);
+        a.setUserId(1);
+        attendanceRecordService.addAttendanceRecord(a);
 
     }
 
