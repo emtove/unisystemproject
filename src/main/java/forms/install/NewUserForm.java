@@ -36,7 +36,7 @@ public class NewUserForm {
         if (success) {
             user = new User();
         } else {
-            fc.addMessage("new-user-form", new FacesMessage("there is already an account with that email"));
+            fc.addMessage("new-user-form", new FacesMessage("det finns redan ett konto med den mailadressen"));
         }
     }
 }

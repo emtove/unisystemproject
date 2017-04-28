@@ -39,7 +39,7 @@ public class LogInForm {
             return "home?faces-redirect=true;";
 //            return fc.getViewRoot().getViewId() + "?faces-redirect=true;";
         } else {
-            fc.addMessage("login-form", new FacesMessage("Invalid email or password"));
+            fc.addMessage("login-form", new FacesMessage("felaktigt användarnamn eller lösenord"));
             return "";
         }
     }

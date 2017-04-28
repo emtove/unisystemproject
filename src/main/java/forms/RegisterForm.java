@@ -51,12 +51,12 @@ public class RegisterForm {
             if (success) {
                 return "register-success";
             } else {
-                fc.addMessage("register-form", new FacesMessage("there is already an account with that email"));
+                fc.addMessage("register-form", new FacesMessage("det finns redan ett konto med den mailadressen"));
                 return "";
             }
         } else {
             Locale locale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale();
-            fc.addMessage("register-form", new FacesMessage("passwords do not match"));
+            fc.addMessage("register-form", new FacesMessage("lösenorden matchar inte"));
             return "";
         }
     }

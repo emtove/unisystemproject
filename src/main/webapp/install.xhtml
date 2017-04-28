@@ -13,35 +13,38 @@
 </h:head>
 <h:body>
     <article>
-        <h1>First-time installation</h1>
+        <h1>Installation</h1>
         <hr/>
         <section>
-            <h2>Quick start</h2>
-            <p>Fill the database with test courses/users.</p>
+            <h2>Snabbstart</h2>
+            <p>Lägg till exempelkurser och -användare för att testa systemet.</p>
             <h:form id="quickStartForm">
-                <h:commandButton value="Fill database" action="#{quickStartForm.fillDatabase}"/>
+                <h:commandButton value="Lägg till data" action="#{quickStartForm.fillDatabase}"/>
                 <h:messages for="quickStartForm"/>
             </h:form>
-            <h3>Disable this page</h3>
-            <p>When you're done with this, please disable the page so it can't be abused.</p>
+            <h3>Lås sidan</h3>
+            <p>
+                När du är klar här, tryck på den här knappen för att göra sidan oåtkomlig så
+                att ingen kan komma åt den av misstag.
+            </p>
             <h:form>
-                <h:commandButton value="Disable this page" action="#{quickStartForm.finishInstall}"/>
+                <h:commandButton value="Lås sidan" action="#{quickStartForm.finishInstall}"/>
             </h:form>
         </section>
         <hr/>
         <section>
-            <h2>Users</h2>
+            <h2>Användare</h2>
             <h:dataTable id="userList" value="#{userManager.users}" var="user">
                 <h:column>
                     <f:facet name="header">Id</f:facet>
                     #{user.id}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">First name</f:facet>
+                    <f:facet name="header">Förnamn</f:facet>
                     #{user.firstName}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Last name</f:facet>
+                    <f:facet name="header">Efternamn</f:facet>
                     #{user.lastName}
                 </h:column>
                 <h:column>
@@ -49,7 +52,7 @@
                     #{user.email}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Password</f:facet>
+                    <f:facet name="header">Lösenord</f:facet>
                     #{user.password}
                 </h:column>
                 <h:column>
@@ -57,7 +60,7 @@
                     #{user.student ? "&#x2714;" : ""}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Teacher?</f:facet>
+                    <f:facet name="header">Lärare?</f:facet>
                     #{user.teacher ? "&#x2714;" : ""}
                 </h:column>
                 <h:column>
@@ -65,28 +68,28 @@
                     #{user.admin ? "&#x2714;" : ""}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Studying courses</f:facet>
+                    <f:facet name="header">Läser i kurser:</f:facet>
                     <ui:repeat value="#{user.studentCourseList}" var="course">
-                        Course: #{course}<br/>
+                        #{course}<br/>
                     </ui:repeat>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Teaching courses</f:facet>
+                    <f:facet name="header">Undervisar i kurser:</f:facet>
                     <ui:repeat value="#{user.teacherCourseList}" var="course">
-                        Course: #{course}<br/>
+                        #{course}<br/>
                     </ui:repeat>
                 </h:column>
             </h:dataTable>
 
             <h:form id="new-user-form" styleClass="install-form">
-                <h3 class="install-form-header">Create new user</h3>
+                <h3 class="install-form-header">Skapa ny användare</h3>
 
-                <h:outputLabel styleClass="input-field-label" value="First name:" for="firstNameInput"/>
+                <h:outputLabel styleClass="input-field-label" value="Förnamn:" for="firstNameInput"/>
                 <h:inputText value="#{newUserForm.user.firstName}" id="firstNameInput"/>
                 <!--<h:message for="firstNameInput"/>-->
                 <br/>
 
-                <h:outputLabel styleClass="input-field-label" value="Last name:" for="lastNameInput"/>
+                <h:outputLabel styleClass="input-field-label" value="Efternamn:" for="lastNameInput"/>
                 <h:inputText value="#{newUserForm.user.lastName}" id="lastNameInput"/>
                 <!--<h:message for="lastNameInput"/>-->
                 <br/>
@@ -96,7 +99,7 @@
                 <!--<h:message for="emailInput"/>-->
                 <br/>
 
-                <h:outputLabel styleClass="input-field-label" value="Password:" for="passwordInput"/>
+                <h:outputLabel styleClass="input-field-label" value="Lösenord:" for="passwordInput"/>
                 <h:inputText value="#{newUserForm.user.password}" id="passwordInput"/>
                 <!--<h:message for="passwordInput"/>-->
                 <h:messages styleClass="error-message-output"/>
@@ -107,31 +110,31 @@
 
                     <h:selectBooleanCheckbox styleClass="checkbox" value="#{newUserForm.user.teacher}"
                                              id="teacherCheckbox"/>
-                    <h:outputLabel styleClass="checkbox-label" value="Teacher" for="teacherCheckbox"/>
+                    <h:outputLabel styleClass="checkbox-label" value="Lärare" for="teacherCheckbox"/>
 
                     <h:selectBooleanCheckbox styleClass="checkbox" value="#{newUserForm.user.admin}"
                                              id="adminCheckbox"/>
                     <h:outputLabel styleClass="checkbox-label" value="Admin" for="adminCheckbox"/>
                 </div>
-                <h:commandButton value="Create user" action="#{newUserForm.submitForm}">
+                <h:commandButton value="Skapa användare" action="#{newUserForm.submitForm}">
                     <f:ajax execute="@form" render="@form userList" resetValues="true"/>
                 </h:commandButton>
             </h:form>
         </section>
         <hr/>
         <section>
-            <h2>Courses</h2>
+            <h2>Kurser</h2>
             <h:dataTable id="courseList" value="#{newCourseForm.courses}" var="course">
                 <h:column>
                     <f:facet name="header">Id</f:facet>
                     #{course.id}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Name</f:facet>
+                    <f:facet name="header">Namn</f:facet>
                     #{course.name}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Description</f:facet>
+                    <f:facet name="header">Beskrivning</f:facet>
                     #{course.description}
                 </h:column>
                 <h:column>
@@ -141,7 +144,7 @@
                     </ui:repeat>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Teachers</f:facet>
+                    <f:facet name="header">Lärare</f:facet>
                     <ui:repeat value="#{course.teacherList}" var="teacher">
                         #{teacher}<br/>
                     </ui:repeat>
@@ -149,50 +152,19 @@
             </h:dataTable>
 
             <h:form id="new-course-form" styleClass="install-form">
-                <h3 class="install-form-header">Create new course</h3>
-                <h:outputLabel styleClass="input-field-label" value="Name:" for="nameInput"/>
+                <h3 class="install-form-header">Skapa ny kurs</h3>
+                <h:outputLabel styleClass="input-field-label" value="Namn:" for="nameInput"/>
                 <h:inputText value="#{newCourseForm.course.name}" id="nameInput"/>
-                <!--<h:message for="nameInput"/>-->
                 <br/>
 
-                <h:outputLabel styleClass="input-field-label" value="Description:" for="descriptionInput"/>
+                <h:outputLabel styleClass="input-field-label" value="Beskrivning:" for="descriptionInput"/>
                 <h:inputText value="#{newCourseForm.course.description}" id="descriptionInput"/>
-                <!--<h:message for="descriptionInput"/>-->
                 <br/>
                 <h:messages styleClass="error-message-output"/>
                 <br/>
-                <h:commandButton value="Create course" action="#{newCourseForm.submitForm}">
+                <h:commandButton value="Skapa kurs" action="#{newCourseForm.submitForm}">
                     <f:ajax execute="@form" render="@form courseList" resetValues="true"/>
                 </h:commandButton>
-            </h:form>
-        </section>
-        <!--<h2>Pending students/courses</h2>-->
-        <!--<h:form id="managePending">-->
-        <!--<h:selectOneListbox value="#{modifyStudentCourseForm.pendingCourseId}">-->
-        <!--<f:selectItems value="#{newCourseForm.courses}" var="course"-->
-        <!--itemValue="#{course.id}" itemLabel="#{course.name}"/>-->
-        <!--</h:selectOneListbox>-->
-        <!--<h:selectOneListbox value="#{modifyStudentCourseForm.pendingUserId}">-->
-        <!--<f:selectItems value="#{userManager.users}" var="user"-->
-        <!--itemValue="#{user.id}" itemLabel="#{user.email}"/>-->
-        <!--</h:selectOneListbox>-->
-        <!--<h:commandButton value="Connect pending course and user" action="#{modifyStudentCourseForm.connectPending}"/>-->
-        <!--</h:form>-->
-        <hr/>
-        <section>
-            <h2>Student/course</h2>
-            <h:form id="manageStudentCourse">
-                <h:selectOneListbox value="#{modifyStudentCourseForm.courseId}">
-                    <f:selectItems value="#{newCourseForm.courses}" var="course"
-                                   itemValue="#{course.id}" itemLabel="#{course.name}"/>
-                </h:selectOneListbox>
-                <h:selectOneListbox value="#{modifyStudentCourseForm.userId}">
-                    <f:selectItems value="#{userManager.users}" var="user"
-                                   itemValue="#{user.id}" itemLabel="#{user.email}"/>
-                </h:selectOneListbox>
-                <h:commandButton value="Connect course and user" action="#{modifyStudentCourseForm.connectStudent}"/>
-                <h:commandButton value="Disconnect course and user"
-                                 action="#{modifyStudentCourseForm.disconnectStudent}"/>
             </h:form>
         </section>
     </article>
