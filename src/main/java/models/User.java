@@ -4,8 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 // this table has to be called "users" since "user" is a reserved name in sql
@@ -121,5 +120,26 @@ public class User implements Identifiable, Serializable {
 
     public void setTeacherCourses(Set<Course> teacherCourses) {
         this.teacherCourses = teacherCourses;
+    }
+
+    @Transient
+    private List<Course> getSortedCourseList(Set<Course> courses) {
+        if (courses == null) {
+            return null;
+        } else {
+            List<Course> courseList = new ArrayList<>(courses);
+            courseList.sort((o1, o2) -> (int) (o1.getId() - o2.getId()));
+            return courseList;
+        }
+    }
+
+    @Transient
+    public List<Course> getStudentCourseList() {
+        return getSortedCourseList(studentCourses);
+    }
+
+    @Transient
+    public List<Course> getTeacherCourseList() {
+        return getSortedCourseList(teacherCourses);
     }
 }

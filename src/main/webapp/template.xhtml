@@ -14,23 +14,23 @@
 
 <h:body>
     <nav>
-        <ul>
+        <ul class="top-menu">
             <li><h:link value="Hem" outcome="index"/></li>
 
             <!-- Student fliken-->
-           <ui:fragment>  <!--rendered="#{authSessionManager.studentLoggedIn}">-->
+            <ui:fragment rendered="#{authSessionManager.studentLoggedIn}">
                 <li><h:link value="Student" outcome="student"/></li>
             </ui:fragment>
 
             <!-- Lärare fliken-->
-            <ui:fragment> <!--rendered="#{authSessionManager.teacherLoggedIn}">-->
+            <ui:fragment rendered="#{authSessionManager.teacherLoggedIn}">
                 <li>
                     <h:link value="Lärare" outcome="index"><span class="caret"/></h:link>
-                    <div>
+                    <div class="sub-menu">
                         <ul>
                             <li>
                                 <h:link value="Närvaro" outcome="index"><span class="caret"/></h:link>
-                                <div>
+                                <div class="sub-menu">
                                     <ul>
                                         <li><h:link value="Föra närvaro" outcome="teacherTakeAttendance"/></li>
                                         <li><h:link value="Se närvaro" outcome="index"/></li>
@@ -44,14 +44,14 @@
             </ui:fragment>
 
             <!-- Administrator fliken-->
-            <ui:fragment> <!--rendered="#{authSessionManager.adminLoggedIn}">-->
+            <ui:fragment rendered="#{authSessionManager.adminLoggedIn}">
                 <li>
                     <h:link value="Administrator" outcome="index"><span class="caret"/></h:link>
-                    <div>
+                    <div class="sub-menu">
                         <ul>
                             <li>
                                 <h:link value="Närvaro" outcome="index"><span class="caret"/></h:link>
-                                <div>
+                                <div class="sub-menu">
                                     <ul>
                                         <li><h:link value="Per kurs" outcome="index"/></li>
                                         <li><h:link value="Per elev" outcome="index"/></li>

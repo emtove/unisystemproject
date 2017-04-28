@@ -3,7 +3,7 @@ package models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Course implements Identifiable, Serializable {
@@ -68,5 +68,26 @@ public class Course implements Identifiable, Serializable {
 
     public void setTeachers(Set<User> teachers) {
         this.teachers = teachers;
+    }
+
+    @Transient
+    private List<User> getSortedUserList(Set<User> users) {
+        if (users == null) {
+            return null;
+        } else {
+            List<User> userList = new ArrayList<>(users);
+            userList.sort((o1, o2) -> (int) (o1.getId() - o2.getId()));
+            return userList;
+        }
+    }
+
+    @Transient
+    public List<User> getStudentList() {
+        return getSortedUserList(students);
+    }
+
+    @Transient
+    public List<User> getTeacherList() {
+        return getSortedUserList(teachers);
     }
 }

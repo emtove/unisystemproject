@@ -104,6 +104,11 @@ public class UserService {
         }
     }
 
+    /**
+     * Removes the student from the course.
+     * @param userId
+     * @param courseId
+     */
     public void removeStudentFromCourse(long userId, long courseId) {
         User user = em.find(User.class, userId);
         Course course = em.find(Course.class, courseId);

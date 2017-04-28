@@ -10,6 +10,7 @@ import services.UserService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,29 +23,29 @@ import java.util.List;
 public class Student {
 
     private models.User user;
-    private long selectedCourseAttendnce;
+    private long selectedCourseAttendance;
     private long selectedCourse;
 
     @EJB
-    CourseService courseService;
+    private CourseService courseService;
     @EJB
-    UserService userService;
+    private UserService userService;
     @EJB
-    AttendanceRecordService attendanceRecordService;
-    @EJB
-    AuthSessionManager authSessionManager;
+    private AttendanceRecordService attendanceRecordService;
+    @Inject
+    private AuthSessionManager authSessionManager;
 
     @PostConstruct
-    public void Init() {
-        models.User user = authSessionManager.getUser();
+    public void init() {
+        user = authSessionManager.getUser();
     }
 
     public List<AttendanceRecord> getAttendanceRecord(){
-        return attendanceRecordService.getAttendanceByCourseAndUser(selectedCourseAttendnce,user.getId());
+        return attendanceRecordService.getAttendanceByCourseAndUser(selectedCourseAttendance,user.getId());
     }
 
     public void showAttendenceForCourse(long courseId){
-        selectedCourseAttendnce = courseId;
+        selectedCourseAttendance = courseId;
     }
 
     public List<Course> getRegisteredCourses() {
@@ -68,11 +69,11 @@ public class Student {
     }
 
     public List<AttendanceRecord> getAttendenceArray() {
-        return attendanceRecordService.getAttendanceByCourseAndUser(selectedCourseAttendnce, user.getId());
+        return attendanceRecordService.getAttendanceByCourseAndUser(selectedCourseAttendance, user.getId());
     }
 
     public String getCourseName(){
-        return courseService.getCourse(selectedCourseAttendnce).getName();
+        return courseService.getCourse(selectedCourseAttendance).getName();
     }
 
     public String getFirstName() {
