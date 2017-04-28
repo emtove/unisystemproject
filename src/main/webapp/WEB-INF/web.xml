@@ -20,6 +20,11 @@
         <filter-name>LoggedInFilter</filter-name>
         <filter-class>login.filters.LoggedInFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>InstallFilter</filter-name>
+        <filter-class>login.filters.InstallFilter</filter-class>
+    </filter>
+
     <filter-mapping>
         <filter-name>AdminAuthFilter</filter-name>
         <url-pattern>/admin.xhtml</url-pattern>
@@ -36,6 +41,11 @@
     <filter-mapping>
         <filter-name>LoggedInFilter</filter-name>
         <url-pattern>/index.xhtml</url-pattern>
+    </filter-mapping>
+    <!-- Don't give access to the install page if you've already installed it -->
+    <filter-mapping>
+        <filter-name>InstallFilter</filter-name>
+        <url-pattern>/install.xhtml</url-pattern>
     </filter-mapping>
 
     <!-- Boilerplate settings -->

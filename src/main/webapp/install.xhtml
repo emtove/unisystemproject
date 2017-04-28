@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Installation</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="install.css"/>
+    <h:outputScript library="js" name="installpage.js"/>
+    <meta charset="UTF-8"/>
+</h:head>
+<h:body>
+    <article>
+        <h1>First-time installation</h1>
+        <hr/>
+        <section>
+            <h2>Quick start</h2>
+            <p>Fill the database with test courses/users.</p>
+            <h:form id="quickStartForm">
+                <h:commandButton value="Fill database" action="#{quickStartForm.fillDatabase}"/>
+                <h:messages for="quickStartForm"/>
+            </h:form>
+            <h3>Disable this page</h3>
+            <p>When you're done with this, please disable the page so it can't be abused.</p>
+            <h:form>
+                <h:commandButton value="Disable this page" action="#{quickStartForm.finishInstall}"/>
+            </h:form>
+        </section>
+        <hr/>
+        <section>
+            <h2>Users</h2>
+            <h:dataTable id="userList" value="#{userManager.users}" var="user">
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    #{user.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">First name</f:facet>
+                    #{user.firstName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Last name</f:facet>
+                    #{user.lastName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email</f:facet>
+                    #{user.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Password</f:facet>
+                    #{user.password}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Student?</f:facet>
+                    #{user.student ? "&#x2714;" : ""}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Teacher?</f:facet>
+                    #{user.teacher ? "&#x2714;" : ""}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Admin?</f:facet>
+                    #{user.admin ? "&#x2714;" : ""}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Studying courses</f:facet>
+                    <ui:repeat value="#{user.studentCourseList}" var="course">
+                        Course: #{course}<br/>
+                    </ui:repeat>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Teaching courses</f:facet>
+                    <ui:repeat value="#{user.teacherCourseList}" var="course">
+                        Course: #{course}<br/>
+                    </ui:repeat>
+                </h:column>
+            </h:dataTable>
+
+            <h:form id="new-user-form" styleClass="install-form">
+                <h3 class="install-form-header">Create new user</h3>
+
+                <h:outputLabel styleClass="input-field-label" value="First name:" for="firstNameInput"/>
+                <h:inputText value="#{newUserForm.user.firstName}" id="firstNameInput"/>
+                <!--<h:message for="firstNameInput"/>-->
+                <br/>
+
+                <h:outputLabel styleClass="input-field-label" value="Last name:" for="lastNameInput"/>
+                <h:inputText value="#{newUserForm.user.lastName}" id="lastNameInput"/>
+                <!--<h:message for="lastNameInput"/>-->
+                <br/>
+
+                <h:outputLabel styleClass="input-field-label" value="Email:" for="emailInput"/>
+                <h:inputText value="#{newUserForm.user.email}" id="emailInput"/>
+                <!--<h:message for="emailInput"/>-->
+                <br/>
+
+                <h:outputLabel styleClass="input-field-label" value="Password:" for="passwordInput"/>
+                <h:inputText value="#{newUserForm.user.password}" id="passwordInput"/>
+                <!--<h:message for="passwordInput"/>-->
+                <h:messages styleClass="error-message-output"/>
+                <div class="checkbox-container">
+                    <h:selectBooleanCheckbox styleClass="checkbox" value="#{newUserForm.user.student}"
+                                             id="studentCheckbox"/>
+                    <h:outputLabel styleClass="checkbox-label" value="Student" for="studentCheckbox"/>
+
+                    <h:selectBooleanCheckbox styleClass="checkbox" value="#{newUserForm.user.teacher}"
+                                             id="teacherCheckbox"/>
+                    <h:outputLabel styleClass="checkbox-label" value="Teacher" for="teacherCheckbox"/>
+
+                    <h:selectBooleanCheckbox styleClass="checkbox" value="#{newUserForm.user.admin}"
+                                             id="adminCheckbox"/>
+                    <h:outputLabel styleClass="checkbox-label" value="Admin" for="adminCheckbox"/>
+                </div>
+                <h:commandButton value="Create user" action="#{newUserForm.submitForm}">
+                    <f:ajax execute="@form" render="@form userList" resetValues="true"/>
+                </h:commandButton>
+            </h:form>
+        </section>
+        <hr/>
+        <section>
+            <h2>Courses</h2>
+            <h:dataTable id="courseList" value="#{newCourseForm.courses}" var="course">
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    #{course.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{course.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    #{course.description}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Students</f:facet>
+                    <ui:repeat value="#{course.studentList}" var="student">
+                        #{student}<br/>
+                    </ui:repeat>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Teachers</f:facet>
+                    <ui:repeat value="#{course.teacherList}" var="teacher">
+                        #{teacher}<br/>
+                    </ui:repeat>
+                </h:column>
+            </h:dataTable>
+
+            <h:form id="new-course-form" styleClass="install-form">
+                <h3 class="install-form-header">Create new course</h3>
+                <h:outputLabel styleClass="input-field-label" value="Name:" for="nameInput"/>
+                <h:inputText value="#{newCourseForm.course.name}" id="nameInput"/>
+                <!--<h:message for="nameInput"/>-->
+                <br/>
+
+                <h:outputLabel styleClass="input-field-label" value="Description:" for="descriptionInput"/>
+                <h:inputText value="#{newCourseForm.course.description}" id="descriptionInput"/>
+                <!--<h:message for="descriptionInput"/>-->
+                <br/>
+                <h:messages styleClass="error-message-output"/>
+                <br/>
+                <h:commandButton value="Create course" action="#{newCourseForm.submitForm}">
+                    <f:ajax execute="@form" render="@form courseList" resetValues="true"/>
+                </h:commandButton>
+            </h:form>
+        </section>
+        <!--<h2>Pending students/courses</h2>-->
+        <!--<h:form id="managePending">-->
+        <!--<h:selectOneListbox value="#{modifyStudentCourseForm.pendingCourseId}">-->
+        <!--<f:selectItems value="#{newCourseForm.courses}" var="course"-->
+        <!--itemValue="#{course.id}" itemLabel="#{course.name}"/>-->
+        <!--</h:selectOneListbox>-->
+        <!--<h:selectOneListbox value="#{modifyStudentCourseForm.pendingUserId}">-->
+        <!--<f:selectItems value="#{userManager.users}" var="user"-->
+        <!--itemValue="#{user.id}" itemLabel="#{user.email}"/>-->
+        <!--</h:selectOneListbox>-->
+        <!--<h:commandButton value="Connect pending course and user" action="#{modifyStudentCourseForm.connectPending}"/>-->
+        <!--</h:form>-->
+        <hr/>
+        <section>
+            <h2>Student/course</h2>
+            <h:form id="manageStudentCourse">
+                <h:selectOneListbox value="#{modifyStudentCourseForm.courseId}">
+                    <f:selectItems value="#{newCourseForm.courses}" var="course"
+                                   itemValue="#{course.id}" itemLabel="#{course.name}"/>
+                </h:selectOneListbox>
+                <h:selectOneListbox value="#{modifyStudentCourseForm.userId}">
+                    <f:selectItems value="#{userManager.users}" var="user"
+                                   itemValue="#{user.id}" itemLabel="#{user.email}"/>
+                </h:selectOneListbox>
+                <h:commandButton value="Connect course and user" action="#{modifyStudentCourseForm.connectStudent}"/>
+                <h:commandButton value="Disconnect course and user"
+                                 action="#{modifyStudentCourseForm.disconnectStudent}"/>
+            </h:form>
+        </section>
+    </article>
+</h:body>
+</html>
