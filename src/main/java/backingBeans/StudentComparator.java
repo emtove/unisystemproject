@@ -1,4 +1,7 @@
+package backingBeans;
+
 import models.User;
+
 import java.util.Comparator;
 
 /**

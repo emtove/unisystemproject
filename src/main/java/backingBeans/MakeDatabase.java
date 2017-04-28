@@ -1,3 +1,4 @@
+package backingBeans;
 
 import login.AuthSessionManager;
 import models.AttendanceRecord;
@@ -12,9 +13,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.List;
 
 /**
  * Created by Elev1 on 2017-04-25.
@@ -56,7 +56,6 @@ public class MakeDatabase {
 
     public String LogIn(){
         if (authSessionManager.logIn(email,passWord)){
-            //if ()
             return "";
         }
         else {
@@ -64,7 +63,7 @@ public class MakeDatabase {
         }
     }
 
-    public void BuildMyDB(){
+    public void buildMyDB(){
 
         User user = new User();
         user.setFirstName("Olle");
@@ -80,7 +79,7 @@ public class MakeDatabase {
         user.setLastName("Larsson");
         user.setEmail("email2@email.se");
         user.setPassword("Olle1234");
-        user.setStudent(false);
+        user.setStudent(true);
         user.setTeacher(true);
         userService.addUser(user);
 

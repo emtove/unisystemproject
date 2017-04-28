@@ -33,14 +33,12 @@ public class AttendanceRecordService {
         }
     }
 
-
     public List<AttendanceRecord> getAttendance(AttendanceRecord record){
         Query query = em.createQuery("select a from AttendanceRecord a where a.date = :date and a.courseId = :courseId and a.userId = :userId", AttendanceRecord.class);
         query.setParameter("date", record.getDate());
         query.setParameter("courseId", record.getCourseId());
         query.setParameter("userId", record.getUserId());
 
-        //List<AttendanceRecord> attendanceRecords = query.getResultList();
         return query.getResultList();
     }
 
@@ -48,6 +46,12 @@ public class AttendanceRecordService {
         Query query = em.createQuery("select a from AttendanceRecord a where a.courseId = :courseId and a.userId = :userId", AttendanceRecord.class);
         query.setParameter("courseId", courseId);
         query.setParameter("userId", userId);
+        return query.getResultList();
+    }
+
+    public List<AttendanceRecord> getSortedAttendanceByCourseAndUser(long courseId, long userId){
+        Query query = em.createQuery("select a from AttendanceRecord a where a.courseId = :courseId order by a.date", AttendanceRecord.class);
+        query.setParameter("courseId", courseId);
         return query.getResultList();
     }
 }

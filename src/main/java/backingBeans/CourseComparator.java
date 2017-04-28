@@ -1,4 +1,7 @@
+package backingBeans;
+
 import models.Course;
+
 import java.util.Comparator;
 
 /**
