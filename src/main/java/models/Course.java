@@ -9,7 +9,7 @@ import java.util.Set;
 public class Course implements Identifiable, Serializable {
     @Id @GeneratedValue
     private long id;
-    @NotNull
+    @NotNull(message = "name can not be empty")
     private String name;
     private String description;
     @ManyToMany

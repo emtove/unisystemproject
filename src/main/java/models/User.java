@@ -13,9 +13,10 @@ import java.util.Set;
 public class User implements Identifiable, Serializable {
     @Id @GeneratedValue
     private long id;
-    @NotNull
+    @NotNull(message = "email can not be empty")
     private String email;
-    @NotNull @Size(min = 6)
+    @NotNull(message = "password can not be empty")
+    @Size(min = 6, message = "password has to be at least 6 characters")
     private String password;
     private String firstName;
     private String lastName;

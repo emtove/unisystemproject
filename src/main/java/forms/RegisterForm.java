@@ -45,12 +45,17 @@ public class RegisterForm {
     }
 
     public String submitForm() {
+        FacesContext fc = FacesContext.getCurrentInstance();
         if (repeatedPassword.equals(user.getPassword())) {
-            userService.addUser(user);
-            return "register-success";
+            boolean success = userService.addUser(user);
+            if (success) {
+                return "register-success";
+            } else {
+                fc.addMessage("register-form", new FacesMessage("there is already an account with that email"));
+                return "";
+            }
         } else {
             Locale locale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale();
-            FacesContext fc = FacesContext.getCurrentInstance();
             fc.addMessage("register-form", new FacesMessage("passwords do not match"));
             return "";
         }
