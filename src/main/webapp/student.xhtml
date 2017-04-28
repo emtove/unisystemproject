@@ -28,7 +28,7 @@
                 <div class="course-table">
                     <h3>Mina kurser:</h3>
 
-                    <ui:repeat value="#{student.registredCourses}" var="c">
+                    <ui:repeat value="#{student.registeredCourses}" var="c">
                         <h:outputLabel value="#{c.name}"/>
                         <h:commandButton value="Hämta närvaro" action="#{student.showAttendenceForCourse(c.id)}"/>
                         <h:commandButton styleClass="btn-del" value="Avregistrera" action="#{student.deRegisterForCourse(c.id)}"/>

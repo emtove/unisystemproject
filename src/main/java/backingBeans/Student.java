@@ -47,8 +47,8 @@ public class Student {
         selectedCourseAttendnce = courseId;
     }
 
-    public List<Course> getRegistredCourses(){
-        List<Course> courses = new ArrayList<Course>(user.getStudentCourses());
+    public List<Course> getRegisteredCourses() {
+        List<Course> courses = new ArrayList<>(user.getStudentCourses());
         courses.sort(new CourseComparator());
         return courses;
     }
