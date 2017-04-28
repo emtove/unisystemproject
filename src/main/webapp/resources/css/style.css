@@ -14,7 +14,7 @@ body {
 
 .login-page {
     width: 960px;
-    padding: 7% 0 0;
+    padding-top: 100px;
     margin: auto;
 }
 
@@ -47,28 +47,32 @@ body {
     border: 0;
     padding: 15px;
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
 }
 
 .form input[type="submit"].btn-login {
-    background: #5cb85c;
-    border-color: #5cb85c;
+    background-color: transparent;
+    border: 2px solid #5cb85c;
+    color: #000;
 }
 
 .form input[type="submit"].btn-login:hover {
-    background-color: #449d44;
-    border-color: #449d44;
+    background-color: transparent;
+    border: 2px solid #449d44;
+    color: #000;
 }
 
 .form input[type="submit"].btn-register {
-    background-color: #337ab7;
-    border-color: #2e6da4;
+    background-color: transparent;
+    border: 2px solid #2e6da4;
+    color: #000;
 }
 
 .form input[type="submit"].btn-register:hover {
-    background-color: #286090;
-    border-color: #204d74;
+    background-color: transparent;
+    border: 2px solid #204d74;
+    color: #000;
 }
 
 .form .register-form {

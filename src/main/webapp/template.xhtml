@@ -18,12 +18,12 @@
             <li><h:link value="Hem" outcome="index"/></li>
 
             <!-- Student fliken-->
-            <ui:fragment rendered="#{authSessionManager.studentLoggedIn}">
+           <ui:fragment>  <!--rendered="#{authSessionManager.studentLoggedIn}">-->
                 <li><h:link value="Student" outcome="student"/></li>
-
             </ui:fragment>
+
             <!-- Lärare fliken-->
-            <ui:fragment rendered="#{authSessionManager.teacherLoggedIn}">
+            <ui:fragment> <!--rendered="#{authSessionManager.teacherLoggedIn}">-->
                 <li>
                     <h:link value="Lärare" outcome="index"><span class="caret"/></h:link>
                     <div>
@@ -32,7 +32,7 @@
                                 <h:link value="Närvaro" outcome="index"><span class="caret"/></h:link>
                                 <div>
                                     <ul>
-                                        <li><h:link value="Föra närvaro" outcome="index"/></li>
+                                        <li><h:link value="Föra närvaro" outcome="teacherTakeAttendance"/></li>
                                         <li><h:link value="Se närvaro" outcome="index"/></li>
                                     </ul>
                                 </div>
@@ -42,8 +42,9 @@
                     </div>
                 </li>
             </ui:fragment>
+
             <!-- Administrator fliken-->
-            <ui:fragment rendered="#{authSessionManager.adminLoggedIn}">
+            <ui:fragment> <!--rendered="#{authSessionManager.adminLoggedIn}">-->
                 <li>
                     <h:link value="Administrator" outcome="index"><span class="caret"/></h:link>
                     <div>
@@ -58,14 +59,13 @@
                                 </div>
                             </li>
                             <li><h:link value="Administrera kurs" outcome="admin"/></li>
+                            <li><h:link value="Ge roller" outcome="setroles"/></li>
                         </ul>
                     </div>
                 </li>
             </ui:fragment>
-            <li><h:link value="Om oss" outcome="index"/></li>
-            <li><h:link value="Hjälp" outcome="index"/></li>
             <h:form styleClass="logged-in-form" rendered="#{authSessionManager.loggedIn}">
-                <h:outputText styleClass="username" value="Hej #{authSessionManager.user.firstName}"/>
+                <h:link styleClass="username" outcome="user" value=" Hej #{authSessionManager.user.firstName}"/>
                 <h:commandLink value="(Logga ut)" action="#{authSessionManager.logOut}"/>
             </h:form>
             <h:link rendered="#{not authSessionManager.loggedIn}" styleClass="logged-in-form"

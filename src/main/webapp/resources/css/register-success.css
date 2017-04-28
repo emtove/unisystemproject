@@ -1,0 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+body {
+    background: #EBE8E4;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Roboto", sans-serif;
+}
+
+p {
+    margin-left: 25px;
+    font-size: 24px;
+}
+
+footer {
+    background-color: transparent;
+    text-align: center;
+}

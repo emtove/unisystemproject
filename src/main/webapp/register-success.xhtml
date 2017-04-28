@@ -6,8 +6,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="template.xhtml">
+    <ui:param name="titleVar" value="Ny titel"></ui:param>
+    <ui:define name="style"><h:outputStylesheet library="css" name="register-success.css" /></ui:define>
     <ui:define name="header">
-        <p>Grattis, du har nu ett konto!</p>
+        <p>Grattis, du har nu ett konto!<br />
+        Logga in på sidan genom att trycka på 'logga in' knappen upp till höger.</p>
+
     </ui:define>
 </ui:composition>
 </html>

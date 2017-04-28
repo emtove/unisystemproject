@@ -6,8 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="template.xhtml">
+    <ui:param name="titleVar" value="Ny titel"></ui:param>
+    <ui:define name="style"><h:outputStylesheet library="css" name="home.css" /></ui:define>
     <ui:define name="header">
-        <p>Detta kan alla se, oavsett student/lärare/admin eller inget.</p>
+        <h3>Välkommen till IT-Universitetet.</h3>
+        <p>Vi har många utbildningar för dig som vill säkra din framtid.<br/></p>
     </ui:define>
 </ui:composition>
 </html>

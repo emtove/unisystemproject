@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>IT Universitetet.</title>
+    <meta charset="UTF-8" />
+</h:head>
+<h:body>
+    <ui:composition template="template.xhtml">
+        <ui:param name="titleVar" value="Ny titel"></ui:param>
+        <ui:define name="style"><h:outputStylesheet library="css" name="user.css" /></ui:define>
+        <ui:define name="header">
+            <div class="form">
+                <h:form id="info-change" class="admin-form">
+                    <h2>Byt information.</h2>
+                    <h:outputLabel styleClass="outLabel" value="Förnamn: "/>
+                    <h:inputText value="#{authSessionManager.user.firstName}"/>
+                    <h:outputLabel styleClass="outLabel" value="Efternamn: "/>
+                    <h:inputText value="#{authSessionManager.user.lastName}"/>
+                    <h:outputLabel styleClass="outLabel" value="Email: "/>
+                    <h:inputText value="#{authSessionManager.user.email}"/>
+                    <h:commandButton styleClass="btn-add" value="Uppdatera"></h:commandButton>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <h2>Byt lösenord.</h2>
+                    <h:form id="password-change">
+                    <h:outputLabel styleClass="outLabel" value="Gammalt lösenord: "/>
+                    <h:inputSecret a:placeholder="gammalt lösenord"/>
+                    <h:outputLabel styleClass="outLabel" value="Nytt lösenord: "/>
+                    <h:inputSecret a:placeholder="nytt lösenord"/>
+                    <h:outputLabel styleClass="outLabel" value="Upprepa lösenord: "/>
+                    <h:inputSecret a:placeholder="upprepa lösenord"/>
+                    <h:commandButton styleClass="btn-add" value="Byt"></h:commandButton>
+                    </h:form>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

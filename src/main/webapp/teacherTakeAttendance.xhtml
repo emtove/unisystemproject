@@ -7,9 +7,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:head>
-    <h:outputStylesheet library="css" name="student.css"  />
+    <title>IT Universitetet.</title>
 </h:head>
 <f:view>
+    <ui:composition template="template.xhtml">
+    <ui:param name="titleVar" value="Ny titel"></ui:param>
+    <ui:define name="style"><h:outputStylesheet library="css" name="teachertakeattendance.css" /></ui:define>
+    <ui:define name="header">
 
     <h:form>
         Kurs: #{teacherTakeAttendance.course.name}
@@ -38,6 +42,9 @@
         </div>
         <h:commandButton value="Registrera Närvaro" action="#{teacherTakeAttendance.registerAttendance}"></h:commandButton>
     </h:form>
+    </ui:define>
+    </ui:composition>
 
 </f:view>
+
 </html>

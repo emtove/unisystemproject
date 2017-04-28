@@ -11,6 +11,7 @@ import services.UserService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -38,13 +39,13 @@ public class TeacherTakeAttendance implements Serializable{
     CourseService courseService;
     @EJB
     AttendanceRecordService attendanceRecordService;
-    @EJB
+    @Inject
     AuthSessionManager authSessionManager;
 
 
     @PostConstruct
     public void Init() {
-    User user = authSessionManager.getUser();
+        user = authSessionManager.getUser();
     }
 
     public void setAttenadnce(String[] attenadnce){
@@ -105,5 +106,3 @@ public class TeacherTakeAttendance implements Serializable{
         }
     }
 }
-
-
