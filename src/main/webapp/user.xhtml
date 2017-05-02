@@ -13,19 +13,20 @@
 </h:head>
 <h:body>
     <ui:composition template="template.xhtml">
-        <ui:param name="titleVar" value="Ny titel"></ui:param>
+        <ui:param name="titleVar" value="Användarprofil"/>
         <ui:define name="style"><h:outputStylesheet library="css" name="user.css" /></ui:define>
         <ui:define name="header">
             <div class="form">
                 <h:form id="info-change" class="admin-form">
                     <h2>Byt information.</h2>
                     <h:outputLabel styleClass="outLabel" value="Förnamn: "/>
-                    <h:inputText value="#{authSessionManager.user.firstName}"/>
+                    <h:inputText value="#{editUserForm.user.firstName}"/>
                     <h:outputLabel styleClass="outLabel" value="Efternamn: "/>
-                    <h:inputText value="#{authSessionManager.user.lastName}"/>
+                    <h:inputText value="#{editUserForm.user.lastName}"/>
                     <h:outputLabel styleClass="outLabel" value="Email: "/>
-                    <h:inputText value="#{authSessionManager.user.email}"/>
-                    <h:commandButton styleClass="btn-add" value="Uppdatera"></h:commandButton>
+                    <h:inputText value="#{editUserForm.user.email}"/>
+                    <h:commandButton styleClass="btn-add" value="Uppdatera"
+                                     action="#{editUserForm.updateUser}"/>
                     <br />
                     <br />
                     <br />

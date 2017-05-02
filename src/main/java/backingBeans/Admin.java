@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -52,6 +53,14 @@ public class Admin {
         course.setName(courseName);
         course.setDescription(courseDescription);
         courseService.addCourse(course);
+    }
+
+    public void removeCourse() {
+        Course course = courseService.getCourse(selectedCourse);
+        course.setStudents(new HashSet<>());
+        course.setTeachers(new HashSet<>());
+        courseService.updateCourse(course);
+        courseService.removeCourse(selectedCourse);
     }
 
     public String getCourseName() {

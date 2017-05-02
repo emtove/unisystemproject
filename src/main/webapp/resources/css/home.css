@@ -10,6 +10,11 @@ h3, p {
     font-size: 24px;
 }
 
+.wip-symbol {
+    margin: 30px;
+    font-size: 120pt !important;
+}
+
 footer {
     background-color: transparent;
     text-align: center;

@@ -15,9 +15,6 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Elev1 on 2017-04-11.
- */
 @RequestScoped
 @Named
 public class Student {
@@ -37,7 +34,7 @@ public class Student {
 
     @PostConstruct
     public void init() {
-        user = authSessionManager.getUser();
+        user = userService.getUser(authSessionManager.getUser().getId());
     }
 
     public List<AttendanceRecord> getAttendanceRecord(){
