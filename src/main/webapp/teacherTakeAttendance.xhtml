@@ -16,35 +16,36 @@
     <ui:define name="header">
 
     <h:form>
-        Kurs: #{teacherTakeAttendance.course.name}
-        <br/>
-        <ui:repeat value="#{teacherTakeAttendance.myCourses}" var="course">
-            <h:outputLabel value="#{course.name}"/>
-            <h:commandButton value="För närvaro" action="#{teacherTakeAttendance.takeAttendanceForCourse(course.id)}"/>
+        <div class="teacherAtt">
+            <h2>Kurs: #{teacherTakeAttendance.course.name}</h2>
             <br/>
-        </ui:repeat>
-
-        <div id="studentAttendanceLabels">
-            <ui:repeat value="#{teacherTakeAttendance.students}" var="s">
-                <h:outputLabel value="#{s.lastName} "/>
-                <h:outputLabel value="#{s.firstName}"/>
-               <!--Id skall bort-->
-                <h:outputLabel value="#{s.id}"/>
+            <ui:repeat value="#{teacherTakeAttendance.myCourses}" var="course">
+                <h:outputLabel value="#{course.name}"/>
+                <h:commandButton styleClass="btn-add" value="För närvaro" action="#{teacherTakeAttendance.takeAttendanceForCourse(course.id)}"/>
                 <br/>
             </ui:repeat>
 
+            <div id="studentAttendanceLabels">
+                <ui:repeat value="#{teacherTakeAttendance.students}" var="s">
+                    <h:outputLabel value="#{s.lastName} "/>
+                    <h:outputLabel value="#{s.firstName}"/>
+
+                    <!--Id skall bort-->
+                    <h:outputLabel value="#{s.id}"/>
+                    <br/>
+                </ui:repeat>
+            </div>
+            <div id="studentAttendanceBooleans">
+                <h:selectManyCheckbox value="#{teacherTakeAttendance.attenadnce}" layout="pageDirection" >
+                    <!--itemLabel skall bort efter att allt funkar-->
+                    <f:selectItems value="#{teacherTakeAttendance.students}" var="st" itemLabel="#{st.id}" itemValue="#{st.id}"/>
+                </h:selectManyCheckbox>
+            </div>
+            <h:commandButton styleClass="btn-add" value="Registrera Närvaro" action="#{teacherTakeAttendance.registerAttendance}"></h:commandButton>
         </div>
-        <div id="studentAttendanceBooleans">
-            <h:selectManyCheckbox value="#{teacherTakeAttendance.attenadnce}" layout="pageDirection" >
-                <!--itemLabel skall bort efter att allt funkar-->
-                <f:selectItems value="#{teacherTakeAttendance.students}" var="st" itemLabel="#{st.id}" itemValue="#{st.id}"/>
-            </h:selectManyCheckbox>
-        </div>
-        <h:commandButton value="Registrera Närvaro" action="#{teacherTakeAttendance.registerAttendance}"></h:commandButton>
     </h:form>
     </ui:define>
     </ui:composition>
-
 </f:view>
 
 </html>
