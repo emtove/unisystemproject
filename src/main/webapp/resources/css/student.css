@@ -15,7 +15,6 @@ body {
 
 .course-table {
     margin: 0 auto;
-    max-width: 300px;
 }
 
 .form input {
@@ -48,7 +47,7 @@ body {
     min-width: 100px;
     padding: 15px;
     background-color: transparent;
-    border-color: #4cae4c;
+    border: 2px solid #5cb85c;
     color: #000;
     font-size: 14px;
     cursor: pointer;
@@ -81,6 +80,6 @@ body {
 
 .form input[type="submit"]:hover {
     background-color: transparent;
-    border: 2px solid #5cb85c;
+    border: 2px solid #449d44;
     color: #000;
 }
