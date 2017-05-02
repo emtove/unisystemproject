@@ -138,14 +138,14 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Students</f:facet>
-                    <ui:repeat value="#{course.studentList}" var="student">
-                        #{student}<br/>
+                    <ui:repeat value="#{course.studentList}" var="studentItem">
+                        #{studentItem}<br/>
                     </ui:repeat>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Lärare</f:facet>
-                    <ui:repeat value="#{course.teacherList}" var="teacher">
-                        #{teacher}<br/>
+                    <ui:repeat value="#{course.teacherList}" var="teacherItem">
+                        #{teacherItem}<br/>
                     </ui:repeat>
                 </h:column>
             </h:dataTable>

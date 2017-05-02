@@ -91,13 +91,5 @@ public class Student {
     public void setSelectedCourse(long selectedCourse) {
         this.selectedCourse = selectedCourse;
     }
-
-    public String toString() {
-        if (user == null) {
-            return "LOL" + super.toString() + user;
-        } else {
-            return user.getId() + ":'" + user.getFirstName() + " " + user.getLastName() + "'";
-        }
-    }
 }
 
