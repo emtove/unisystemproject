@@ -8,7 +8,6 @@
     <title>Installation</title>
     <h:outputStylesheet library="css" name="style.css"/>
     <h:outputStylesheet library="css" name="install.css"/>
-    <h:outputScript library="js" name="installpage.js"/>
     <meta charset="UTF-8"/>
 </h:head>
 <h:body>
@@ -34,7 +33,7 @@
         <hr/>
         <section>
             <h2>Användare</h2>
-            <h:dataTable id="userList" value="#{userManager.users}" var="user">
+            <h:dataTable id="userList" value="#{newUserForm.users}" var="user">
                 <h:column>
                     <f:facet name="header">Id</f:facet>
                     #{user.id}

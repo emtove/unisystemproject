@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import java.util.List;
 
 @Named
 @RequestScoped
@@ -28,6 +29,10 @@ public class NewUserForm {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<User> getUsers() {
+        return userService.getUsers();
     }
 
     public void submitForm() {
